@@ -78,6 +78,12 @@ header nav ul li a {
     animation: fadeIn 4s ease-in-out;
 }
 
+#showcase h2 {
+    font-size: 55px;
+    margin-bottom: 30px;
+    animation: fadeIn 4s ease-in-out;
+}
+
 #showcase p {
     font-size: 24px;
     animation: fadeIn 4s ease-in-out;
@@ -96,7 +102,7 @@ section {
 .section-content {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: left;
     flex-wrap: wrap;
     gap: 20px;
 }

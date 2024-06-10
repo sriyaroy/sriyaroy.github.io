@@ -60,6 +60,10 @@ header nav ul li a {
     font-size: 20px;
 }
 
+.italic {
+    font-style: italic;
+}
+
 /* Showcase Styles */
 #showcase {
     min-height: 100vh;

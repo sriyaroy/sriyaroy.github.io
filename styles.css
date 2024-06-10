@@ -56,6 +56,10 @@ header nav {
     justify-content: center;
 }
 
+header nav ul li a{
+    font-size: 16px;
+}
+
 /* Showcase Styles */
 #showcase {
     min-height: 100vh;

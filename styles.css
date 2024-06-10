@@ -116,12 +116,13 @@ section {
 .section-content h2 {
     margin-bottom: 20px;
     font-size: 32px;
-    color: #272838;
+    color: #ead5e6;
 }
 
 .section-content p {
     font-size: 18px;
     line-height: 1.8;
+    color: #f3e0ec
 }
 
 /* Fade in Animation */

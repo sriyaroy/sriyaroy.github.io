@@ -13,6 +13,8 @@ body {
     background-color: #5d536b;
     color: #333;
     scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
 }
 
 /* Container */

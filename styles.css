@@ -68,6 +68,10 @@ header nav ul li a {
     justify-content: center;
     align-items: center;
     margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    padding: auto;
+    box-sizing: border-box;
 }
 
 #showcase h1 {
@@ -92,6 +96,9 @@ header nav ul li a {
     padding: 0px;
     width: 100%;
     height: auto;
+    max-width: 600px;
+    object-fit: contain;
+    box-sizing: border-box;
 }
 
 /* Section Styles */
@@ -152,7 +159,7 @@ section {
     width: 50%;
     margin-bottom: 10px;
     position: relative;
-    padding-left: 20px;
+    padding-left: 10px;
 }
 
 #contact {

@@ -60,9 +60,7 @@ header nav ul li a {
     font-size: 20px;
 }
 
-.italic {
-    font-style: italic;
-}
+
 
 /* Showcase Styles */
 #showcase {
@@ -83,6 +81,12 @@ header nav ul li a {
 #showcase p {
     font-size: 24px;
     animation: fadeIn 4s ease-in-out;
+}
+
+#showcase p2 {
+    font-size: 24px;
+    animation: fadeIn 4s ease-in-out;
+    color: #272838;
 }
 
 #showcase img {

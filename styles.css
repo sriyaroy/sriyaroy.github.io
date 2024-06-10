@@ -90,7 +90,7 @@ header nav ul li a {
 
 /* Section Styles */
 section {
-    padding: 2em 0; /* Adjusted padding */
+    padding: 0; /* Adjusted padding */
 }
 
 .section-content {
@@ -99,7 +99,6 @@ section {
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
-    opacity: 100;
 }
 
 .section-content div {

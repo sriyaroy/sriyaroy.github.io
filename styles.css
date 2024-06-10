@@ -60,8 +60,6 @@ header nav ul li a {
     font-size: 20px;
 }
 
-
-
 /* Showcase Styles */
 #showcase {
     min-height: 50vh;
@@ -101,8 +99,8 @@ section {
 
 .section-content {
     display: flex;
-    justify-content: left;
-    align-items: left;
+    justify-content: flex-start;
+    align-items: flex-start;
     flex-wrap: wrap;
     gap: 20px;
 }

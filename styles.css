@@ -90,6 +90,8 @@ header nav ul li a {
 #showcase img {
     animation: fadeIn 2s ease-in-out;
     padding: 0px;
+    width: auto;
+    height: auto;
 }
 
 /* Section Styles */
@@ -147,7 +149,7 @@ section {
 }
 
 .tech-list li {
-    width: 30%;
+    width: 50%;
     margin-bottom: 10px;
     position: relative;
     padding-left: 20px;

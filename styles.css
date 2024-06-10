@@ -70,7 +70,7 @@ header nav ul li a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10px 0; /* Reduced padding for top and bottom */
+    padding: 0 0; /* Reduced padding for top and bottom */
     margin-top: 0;
 }
 

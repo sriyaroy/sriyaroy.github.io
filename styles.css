@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Georgia, serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
@@ -7,7 +7,7 @@ body {
 
 header {
     background: #333;
-    color: #fff;
+    color: #5d536b;
     padding: 1em 0;
     text-align: center;
     display: flex;
@@ -33,7 +33,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #fff;
+    color: #f3e0ec;
     text-decoration: none;
 }
 
@@ -48,8 +48,8 @@ section {
 }
 
 footer {
-    background: #333;
-    color: #fff;
+    background: #272838;
+    color: #f3e0ec;
     text-align: center;
     padding: 1em 0;
 }
@@ -67,7 +67,7 @@ footer nav ul li {
 }
 
 footer nav ul li a {
-    color: #fff;
+    color: #7d6b91;
     text-decoration: none;
 }
 

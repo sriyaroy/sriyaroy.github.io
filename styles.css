@@ -13,8 +13,6 @@ body {
     background-color: #5d536b;
     color: #333;
     scroll-behavior: smooth;
-    margin: 0;
-    padding: 0;
 }
 
 /* Container */
@@ -34,7 +32,6 @@ header {
     align-items: center;
     flex-direction: column;
     display: flex;
-    margin-bottom: 0;
 }
 
 header a {
@@ -46,6 +43,8 @@ header a {
 
 nav ul {
     list-style: none;
+    padding: 10;
+    margin: 0;
     display: flex;
     justify-content: center;
 }
@@ -71,7 +70,6 @@ nav ul li a {
     justify-content: center;
     align-items: center;
     padding: 10px;
-    margin-top: -1em;
 }
 
 #showcase h1 {
@@ -93,7 +91,6 @@ nav ul li a {
 /* Section Styles */
 section {
     padding: 1em 2em;
-    margin-top: 0;
 }
 
 .section-content {

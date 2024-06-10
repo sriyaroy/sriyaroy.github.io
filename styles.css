@@ -31,6 +31,7 @@ header {
     align-items: center;
     flex-direction: column;
     display: flex;
+    margin-bottom: 0;
 }
 
 header a {
@@ -69,6 +70,7 @@ header nav ul li a {
     justify-content: center;
     align-items: center;
     padding: 10px 0; /* Reduced padding for top and bottom */
+    margin-top: 0;
 }
 
 #showcase h1 {

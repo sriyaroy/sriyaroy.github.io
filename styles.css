@@ -138,6 +138,21 @@ section {
     text-align: left;
 }
 
+.tech-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tech-list li {
+    width: 45%;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 20px;
+}
+
 #contact {
     justify-self: center;
 }

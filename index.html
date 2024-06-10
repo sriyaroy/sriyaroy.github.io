@@ -1,9 +1,12 @@
+Here's an updated version of the personal one-page website with a more creative layout, using serif fonts, forest green, and coral. The design includes smooth scroll animations and additional layout creativity using HTML and CSS:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sriya Roy</title>
+    <title>Personal Website</title>
     <style>
         /* Basic Reset */
         * {
@@ -14,10 +17,10 @@
 
         /* Body Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Georgia', serif;
             line-height: 1.6;
-            background-color: #598392;
-            color: #598392;
+            background-color: #f0f4f8;
+            color: #333;
             scroll-behavior: smooth;
         }
 
@@ -30,15 +33,15 @@
 
         /* Header Styles */
         header {
-            background: #124559;
-            color: #eff6e0;
+            background: forestgreen;
+            color: white;
             padding-top: 30px;
             min-height: 70px;
-            border-bottom: #aec3b0;
+            border-bottom: #d35400 3px solid;
         }
 
         header a {
-            color: #eff6e0;
+            color: white;
             text-decoration: none;
             text-transform: uppercase;
             font-size: 16px;
@@ -70,27 +73,62 @@
 
         /* Showcase Styles */
         #showcase {
-            min-height: 400px;
-            background: url('forest.jpg') no-repeat 0 -400px;
+            min-height: 100vh;
+            background: url('forest.jpg') no-repeat center center/cover;
             text-align: center;
-            color: #eff6e0;
-            padding-top: 100px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
         #showcase h1 {
             font-size: 55px;
-            margin-top: 80px;
+            margin-bottom: 20px;
             animation: fadeIn 2s ease-in-out;
         }
 
         #showcase p {
-            font-size: 20px;
+            font-size: 24px;
             animation: fadeIn 4s ease-in-out;
         }
 
         /* Section Styles */
         section {
-            padding: 20px 0 20px 0;
+            padding: 40px 0;
+        }
+
+        .section-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .section-content div {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .section-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-content h2 {
+            margin-bottom: 20px;
+            font-size: 32px;
+            color: forestgreen;
+        }
+
+        .section-content p {
+            font-size: 18px;
+            line-height: 1.8;
         }
 
         /* Fade in Animation */
@@ -111,8 +149,8 @@
 
         /* Footer Styles */
         footer {
-            background: #124559;
-            color: #eff6e0;
+            background: forestgreen;
+            color: white;
             text-align: center;
             padding: 30px 0;
         }
@@ -143,16 +181,26 @@
     </section>
 
     <section id="about" class="section">
-        <div class="container">
-            <h2>About Me</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent varius malesuada turpis, a cursus nisi bibendum ac.</p>
+        <div class="container section-content">
+            <div>
+                <h2>About Me</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent varius malesuada turpis, a cursus nisi bibendum ac. Integer scelerisque lacus nec ultricies tempus. Nullam pulvinar mi eget augue sodales, id fringilla lectus porttitor. Maecenas tristique arcu et nisl blandit, id dictum eros pretium.</p>
+            </div>
+            <div>
+                <img src="about.jpg" alt="About me image">
+            </div>
         </div>
     </section>
 
     <section id="contact" class="section">
-        <div class="container">
-            <h2>Contact Me</h2>
-            <p>If you would like to get in touch, please email me at myemail@example.com</p>
+        <div class="container section-content">
+            <div>
+                <img src="contact.jpg" alt="Contact image">
+            </div>
+            <div>
+                <h2>Contact Me</h2>
+                <p>If you would like to get in touch, please email me at myemail@example.com or connect with me on social media. I look forward to hearing from you!</p>
+            </div>
         </div>
     </section>
 
@@ -174,3 +222,6 @@
     </script>
 </body>
 </html>
+```
+
+###

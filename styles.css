@@ -103,6 +103,7 @@ section {
 .section-content div {
     flex: 1;
     min-width: 300px;
+    max-height: 100px;
 }
 
 .section-content img {

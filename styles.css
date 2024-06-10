@@ -1,0 +1,145 @@
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
+    background-color: #5d536b;
+    color: #333;
+    scroll-behavior: smooth;
+}
+
+/* Container */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* Header Styles */
+header {
+    background: #272838;
+    color: #7d6b91;
+    padding-top: 30px;
+    min-height: 70px;
+}
+
+header a {
+    color: #7d6b91;
+    text-decoration: none;
+    text-transform: lowercase;
+    font-size: 16px;
+}
+
+header ul {
+    padding: 0;
+    list-style: none;
+}
+
+header li {
+    display: inline;
+    padding: 0 20px 0 20px;
+}
+
+header #branding {
+    float: left;
+}
+
+header #branding h1 {
+    margin: 0;
+}
+
+header nav {
+    float: right;
+    margin-top: 10px;
+}
+
+/* Showcase Styles */
+#showcase {
+    min-height: 100vh;
+    background: url('forest.jpg') no-repeat center center/cover;
+    text-align: center;
+    color: #f3e0ec;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#showcase h1 {
+    font-size: 55px;
+    margin-bottom: 20px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+#showcase p {
+    font-size: 24px;
+    animation: fadeIn 4s ease-in-out;
+}
+
+/* Section Styles */
+section {
+    padding: 40px 0;
+}
+
+.section-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.section-content div {
+    flex: 1;
+    min-width: 300px;
+}
+
+.section-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-content h2 {
+    margin-bottom: 20px;
+    font-size: 32px;
+    color: #272838;
+}
+
+.section-content p {
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+/* Fade in Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Smooth Scroll Sections */
+.section {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.section.show {
+    opacity: 1;
+}
+
+/* Footer Styles */
+footer {
+    background: #272838;
+    color: #7d6b91;
+    text-align: center;
+    padding: 30px 0;
+}

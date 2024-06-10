@@ -102,7 +102,7 @@ section {
 
 .section-content div {
     flex: 1;
-    min-width: 300px;
+    min-width: 100px;
 }
 
 .section-content img {

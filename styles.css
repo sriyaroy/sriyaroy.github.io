@@ -85,6 +85,7 @@ nav ul li a {
 
 #showcase img {
     animation: fadeIn 2s ease-in-out;
+    padding: 0px;
 }
 
 /* Section Styles */

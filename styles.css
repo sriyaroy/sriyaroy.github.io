@@ -75,7 +75,7 @@ header nav ul li a {
 #showcase h1 {
     font-size: 55px;
     margin-bottom: 30px;
-    animation: fadeIn 2s ease-in-out;
+    animation: fadeIn 4s ease-in-out;
 }
 
 #showcase p {

@@ -123,14 +123,14 @@ section {
     margin-bottom: 20px;
     font-size: 32px;
     color: #ead5e6;
-    text-align: center;
+    text-align: left;
 }
 
 .section-content p {
     font-size: 18px;
     line-height: 1.8;
     color: #f3e0ec;
-    text-align: center;
+    text-align: left;
 }
 
 #contact {

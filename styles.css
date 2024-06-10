@@ -121,6 +121,10 @@ section {
     color: #f3e0ec
 }
 
+#contact {
+    justify-self: center;
+}
+
 /* Fade in Animation */
 @keyframes fadeIn {
     from { opacity: 0; }

@@ -28,6 +28,10 @@ header {
     color: #7d6b91;
     padding-top: 30px;
     min-height: 70px;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
 }
 
 header a {

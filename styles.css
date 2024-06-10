@@ -131,6 +131,13 @@ section {
     text-align: left;
 }
 
+.section-content ul li {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #f3e0ec;
+    text-align: left;
+}
+
 #contact {
     justify-self: center;
 }

@@ -99,6 +99,7 @@ section {
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
+    opacity: 100;
 }
 
 .section-content div {

@@ -101,7 +101,7 @@ section {
 
 .section-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     align-items: left;
     flex-wrap: wrap;
     gap: 20px;

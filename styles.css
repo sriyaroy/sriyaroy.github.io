@@ -61,7 +61,7 @@ header nav ul li a {
 
 /* Showcase Styles */
 #showcase {
-    min-height: 80vh; /* Adjusted to a smaller height */
+    min-height: 50px; /* Adjusted to a smaller height */
     background: url('forest.jpg') no-repeat center center/cover;
     text-align: center;
     color: #f3e0ec;

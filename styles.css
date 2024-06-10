@@ -61,12 +61,15 @@ header nav ul li a {
 
 /* Showcase Styles */
 #showcase {
+    min-height: 50px; /* Adjusted to a smaller height */
     background: url('forest.jpg') no-repeat center center/cover;
     text-align: center;
     color: #f3e0ec;
+    justify-content: center;
     align-items: center;
     display: flex; /* Added flexbox for centering */
     flex-direction: column; /* Ensures content is stacked vertically */
+    /*padding: 0; /* Adjust padding as needed */
 }
 
 #showcase h1 {

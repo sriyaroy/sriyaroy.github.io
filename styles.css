@@ -43,14 +43,14 @@ header a {
 
 header nav ul {
     list-style: none;
-    padding: 0; /* Adjusted padding */
+    padding: 0;
     margin: 0;
     display: flex;
     justify-content: center;
 }
 
 header nav ul li {
-    margin: 0 1em; /* Added space between list items */
+    margin: 0 1em;
 }
 
 header nav ul li a {
@@ -61,15 +61,15 @@ header nav ul li a {
 
 /* Showcase Styles */
 #showcase {
-    display: flex;
-    flex-direction: columns;
+    min-height: 80vh; /* Adjusted to a smaller height */
     background: url('forest.jpg') no-repeat center center/cover;
     text-align: center;
     color: #f3e0ec;
     justify-content: center;
     align-items: center;
-    padding: 0 0; /* Reduced padding for top and bottom */
-    margin-top: 0;
+    display: flex; /* Added flexbox for centering */
+    flex-direction: column; /* Ensures content is stacked vertically */
+    padding: 20px 0; /* Adjust padding as needed */
 }
 
 #showcase h1 {
@@ -90,7 +90,7 @@ header nav ul li a {
 
 /* Section Styles */
 section {
-    padding: 1em 2em;
+    padding: 2em 0; /* Adjusted padding */
 }
 
 .section-content {
@@ -157,14 +157,14 @@ footer {
 
 footer nav ul {
     list-style: none;
-    padding: 0; /* Adjusted padding */
+    padding: 0;
     margin: 0;
     display: flex;
     justify-content: center;
 }
 
 footer nav ul li {
-    margin: 0 1em; /* Added space between list items */
+    margin: 0 1em;
 }
 
 footer nav ul li a {

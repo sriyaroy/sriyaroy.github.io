@@ -90,7 +90,7 @@ header nav ul li a {
 #showcase img {
     animation: fadeIn 2s ease-in-out;
     padding: 0px;
-    width: auto;
+    width: 100%;
     height: auto;
 }
 

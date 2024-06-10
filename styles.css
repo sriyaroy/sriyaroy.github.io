@@ -61,15 +61,14 @@ header nav ul li a {
 
 /* Showcase Styles */
 #showcase {
-    /*min-height: 50px; /* Adjusted to a smaller height */
     background: url('forest.jpg') no-repeat center center/cover;
     text-align: center;
     color: #f3e0ec;
     justify-content: center;
     align-items: center;
-    display: flex; /* Added flexbox for centering */
-    flex-direction: column; /* Ensures content is stacked vertically */
-    padding: 0; /* Adjust padding as needed */
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0; /* Adjusted padding for better visibility */
 }
 
 #showcase h1 {
@@ -90,7 +89,7 @@ header nav ul li a {
 
 /* Section Styles */
 section {
-    padding: 0; /* Adjusted padding */
+    padding: 50px 0; /* Adjusted padding for visibility */
 }
 
 .section-content {

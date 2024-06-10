@@ -80,6 +80,10 @@ header nav {
     animation: fadeIn 4s ease-in-out;
 }
 
+#showcase img {
+    animation: fadeIn 2s ease-in-out;
+}
+
 /* Section Styles */
 section {
     padding: 40px 0;

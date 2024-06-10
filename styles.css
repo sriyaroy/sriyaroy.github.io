@@ -83,12 +83,6 @@ header nav ul li a {
     animation: fadeIn 4s ease-in-out;
 }
 
-#showcase p2 {
-    font-size: 24px;
-    animation: fadeIn 4s ease-in-out;
-    color: #272838;
-}
-
 #showcase img {
     animation: fadeIn 2s ease-in-out;
     padding: 0px;

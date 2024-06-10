@@ -67,8 +67,6 @@ header nav ul li a {
     color: #f3e0ec;
     justify-content: center;
     align-items: center;
-    padding: 0 0; /* Reduced padding for top and bottom */
-    margin-top: 0;
 }
 
 #showcase h1 {

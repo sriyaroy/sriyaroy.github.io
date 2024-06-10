@@ -64,7 +64,7 @@ header nav ul li a {
 
 /* Showcase Styles */
 #showcase {
-    min-height: 100vh;
+    min-height: 50vh;
     text-align: center;
     color: #f3e0ec;
     justify-content: center;

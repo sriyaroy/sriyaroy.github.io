@@ -1,87 +1,171 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styles */
 body {
-    font-family: Georgia, serif;
+    font-family: 'Georgia', serif;
     line-height: 1.6;
-    margin: 0;
-    padding: 0;
+    background-color: #5d536b;
+    color: #333;
+    scroll-behavior: smooth;
 }
 
+/* Container */
+.container {
+    width: 50%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* Header Styles */
 header {
-    background: #333;
-    color: #5d536b;
-    padding: 1em 0;
+    background: #272838;
+    color: #7d6b91;
+    padding-top: 20px;
+    min-height: 70px;
     text-align: center;
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    margin-bottom: 0; /* Ensure no margin at the bottom */
+    flex-direction: column;
+    display: flex;
 }
 
-header h1 {
-    margin: 0;
+header a {
+    color: #7d6b91;
+    text-decoration: none;
+    text-transform: lowercase;
+    font-size: 24px;
 }
 
-nav ul {
+header nav ul {
     list-style: none;
-    padding: 0;
+    padding: 0; /* Adjusted padding */
     margin: 0;
     display: flex;
     justify-content: center;
 }
 
-nav ul li {
-    margin: 0 1em;
+header nav ul li {
+    margin: 0 1em; /* Added space between list items */
 }
 
-nav ul li a {
-    color: #f3e0ec;
+header nav ul li a {
+    color: #7d6b91;
     text-decoration: none;
+    font-size: 14px;
 }
 
+/* Showcase Styles */
 #showcase {
-    padding: 0.5em 2em; /* Reduced padding for top and bottom */
-    margin: 0;
+    min-height: 100vh;
+    background: url('forest.jpg') no-repeat center center/cover;
+    text-align: center;
+    color: #f3e0ec;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0; /* Reduced padding for top and bottom */
 }
 
+#showcase h1 {
+    font-size: 55px;
+    margin-bottom: 20px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+#showcase p {
+    font-size: 24px;
+    animation: fadeIn 4s ease-in-out;
+}
+
+#showcase img {
+    animation: fadeIn 2s ease-in-out;
+    padding: 0px;
+}
+
+/* Section Styles */
 section {
     padding: 1em 2em;
-    margin-top: 0;
 }
 
+.section-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.section-content div {
+    flex: 1;
+    min-width: 300px;
+}
+
+.section-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-content h2 {
+    margin-bottom: 20px;
+    font-size: 32px;
+    color: #ead5e6;
+}
+
+.section-content p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #f3e0ec
+}
+
+#contact {
+    justify-self: center;
+}
+
+/* Fade in Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Smooth Scroll Sections */
+.section {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.section.show {
+    opacity: 1;
+}
+
+/* Footer Styles */
 footer {
     background: #272838;
-    color: #f3e0ec;
+    color: #7d6b91;
     text-align: center;
-    padding: 1em 0;
+    padding: 30px 0;
 }
 
 footer nav ul {
     list-style: none;
-    padding: 0;
+    padding: 0; /* Adjusted padding */
     margin: 0;
     display: flex;
     justify-content: center;
 }
 
 footer nav ul li {
-    margin: 0 1em;
+    margin: 0 1em; /* Added space between list items */
 }
 
 footer nav ul li a {
     color: #7d6b91;
     text-decoration: none;
-}
-
-h2 {
-    animation: slideIn 1s ease-in-out;
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+    font-size: 14px;
 }

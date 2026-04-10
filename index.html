@@ -1,77 +1,998 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sriya roy</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sriya roy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --plum:        #2e1b3e;
+      --aubergine:   #3d2556;
+      --violet:      #6b3fa0;
+      --lavender:    #c4a8e0;
+      --blush:       #f0dff5;
+      --sage:        #7aad8c;
+      --fern:        #4a8c6b;
+      --moss:        #2d5c46;
+      --mint:        #b8ddc8;
+      --cream:       #f7f0ed;
+      --gold:        #d4a84b;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--plum);
+      color: var(--blush);
+      font-family: 'Cormorant Garamond', serif;
+      cursor: none;
+      overflow-x: hidden;
+    }
+
+    /* ── CUSTOM CURSOR ── */
+    .cursor-dot {
+      width: 8px; height: 8px;
+      background: var(--sage);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s;
+    }
+    .cursor-ring {
+      width: 32px; height: 32px;
+      border: 1.5px solid var(--lavender);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.12s, width 0.2s, height 0.2s, border-color 0.2s;
+      opacity: 0.6;
+    }
+    .cursor-ring.hover {
+      width: 56px; height: 56px;
+      border-color: var(--sage);
+      opacity: 1;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none; z-index: 1;
+    }
+
+    /* ── BACKGROUND BOTANICAL SHAPES ── */
+    .bg-flora {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .bg-flora svg { position: absolute; opacity: 0.07; }
+    .bf-1 { top: -60px; right: -40px; width: 420px; transform: rotate(20deg); }
+    .bf-2 { bottom: 10%; left: -60px; width: 340px; transform: rotate(-15deg); }
+    .bf-3 { top: 40%; right: -80px; width: 280px; transform: rotate(35deg); opacity: 0.04 !important; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 22px 48px;
+      display: flex; justify-content: space-between; align-items: center;
+      background: linear-gradient(to bottom, rgba(46,27,62,0.95), transparent);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--lavender);
+      letter-spacing: 0.04em;
+    }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--lavender);
+      text-decoration: none;
+      opacity: 0.75;
+      transition: opacity 0.2s, color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+      height: 1px; background: var(--sage);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--mint); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 2;
+      padding: 100px 48px 60px;
+    }
+    .hero-inner {
+      max-width: 820px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.3s forwards;
+    }
+    .hero-name {
+      font-size: clamp(4rem, 10vw, 8.5rem);
+      font-weight: 300;
+      line-height: 0.95;
+      color: var(--cream);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.5s forwards;
+    }
+    .hero-name em {
+      font-style: italic;
+      color: var(--lavender);
+    }
+    .hero-tagline {
+      font-size: clamp(1.1rem, 2.5vw, 1.55rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--lavender);
+      margin: 24px 0 40px;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.75s forwards;
+    }
+    .hero-tagline span { color: var(--mint); font-style: normal; }
+    .hero-cta {
+      display: inline-flex; gap: 20px; flex-wrap: wrap; justify-content: center;
+      opacity: 0;
+      animation: fadeUp 0.9s 1s forwards;
+    }
+    .btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: 2px;
+      transition: all 0.25s;
+      cursor: none;
+    }
+    .btn-primary {
+      background: var(--sage);
+      color: var(--plum);
+      border: 1.5px solid var(--sage);
+    }
+    .btn-primary:hover { background: var(--mint); border-color: var(--mint); }
+    .btn-outline {
+      background: transparent;
+      color: var(--lavender);
+      border: 1.5px solid var(--violet);
+    }
+    .btn-outline:hover { border-color: var(--lavender); color: var(--blush); }
+
+    .scroll-hint {
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      opacity: 0; animation: fadeIn 1s 1.8s forwards;
+    }
+    .scroll-hint span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--violet); opacity: 0.6;
+    }
+    .scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--violet), transparent);
+      animation: scrollDrop 2s 2s infinite;
+    }
+
+    /* ── SECTION BASE ── */
+    .section {
+      position: relative; z-index: 2;
+      padding: 110px 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-label::before {
+      content: ''; display: block;
+      width: 32px; height: 1px;
+      background: var(--sage);
+    }
+    .section-title {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--cream);
+      margin-bottom: 52px;
+    }
+    .section-title em { font-style: italic; color: var(--lavender); }
+
+    /* ── REVEAL ANIMATION ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .about-text p {
+      font-size: 1.15rem;
+      line-height: 1.85;
+      color: #d8c4e8;
+      margin-bottom: 20px;
+    }
+    .about-text p strong { color: var(--mint); font-weight: 400; }
+    .about-aside { display: flex; flex-direction: column; gap: 28px; }
+    .aside-card {
+      border: 1px solid rgba(107,63,160,0.35);
+      border-radius: 4px;
+      padding: 24px 28px;
+      background: rgba(61,37,86,0.4);
+      backdrop-filter: blur(4px);
+      transition: border-color 0.3s, background 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .aside-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; width: 3px; height: 100%;
+      background: var(--sage);
+      transform: scaleY(0); transform-origin: top;
+      transition: transform 0.3s;
+    }
+    .aside-card:hover::before { transform: scaleY(1); }
+    .aside-card:hover { border-color: rgba(122,173,140,0.45); background: rgba(61,37,86,0.6); }
+    .aside-card h4 {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 10px;
+    }
+    .aside-card p, .aside-card ul {
+      font-size: 0.95rem;
+      color: var(--lavender);
+      line-height: 1.7;
+    }
+    .aside-card ul { list-style: none; }
+    .aside-card ul li::before { content: '◇ '; color: var(--sage); font-size: 0.7em; }
+
+    /* ── EXPERIENCE TIMELINE ── */
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: ''; position: absolute;
+      left: 0; top: 8px; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--violet), transparent);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 52px;
+    }
+    .timeline-item::before {
+      content: ''; position: absolute;
+      left: -34px; top: 9px;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--aubergine);
+      border: 2px solid var(--violet);
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .timeline-item:hover::before {
+      border-color: var(--sage);
+      background: var(--moss);
+    }
+    .tl-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--sage);
+      margin-bottom: 6px;
+    }
+    .tl-role {
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+    .tl-company {
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--lavender);
+      margin-bottom: 14px;
+    }
+    .tl-bullets { list-style: none; }
+    .tl-bullets li {
+      font-size: 0.98rem;
+      color: #c8b4d8;
+      line-height: 1.75;
+      padding-left: 16px;
+      position: relative;
+      margin-bottom: 6px;
+    }
+    .tl-bullets li::before {
+      content: '–'; position: absolute; left: 0;
+      color: var(--sage); font-size: 0.8em;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .skill-card {
+      background: rgba(45,92,70,0.12);
+      border: 1px solid rgba(122,173,140,0.2);
+      border-radius: 4px;
+      padding: 28px 24px;
+      transition: all 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .skill-card::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 0%, rgba(122,173,140,0.12), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .skill-card:hover { border-color: rgba(122,173,140,0.5); transform: translateY(-4px); }
+    .skill-card:hover::after { opacity: 1; }
+    .skill-icon {
+      font-size: 1.5rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .skill-card h4 {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mint);
+      margin-bottom: 12px;
+    }
+    .skill-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      padding: 4px 10px;
+      border-radius: 2px;
+      background: rgba(107,63,160,0.3);
+      color: var(--lavender);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    .project-card {
+      border: 1px solid rgba(107,63,160,0.3);
+      border-radius: 4px;
+      padding: 32px 28px;
+      background: rgba(61,37,86,0.3);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: center;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--violet), var(--sage));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s;
+    }
+    .project-card:hover { border-color: rgba(122,173,140,0.35); background: rgba(61,37,86,0.5); transform: translateY(-3px); }
+    .project-card:hover::before { transform: scaleX(1); }
+    .project-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--violet);
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+    .project-desc {
+      font-size: 0.97rem;
+      color: #c0aad4;
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+    .project-tech {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .p-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      padding: 4px 10px;
+      border-radius: 2px;
+      background: rgba(45,92,70,0.35);
+      color: var(--mint);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── BEYOND WORK ── */
+    .beyond-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .beyond-card {
+      padding: 28px 20px;
+      border: 1px solid rgba(196,168,224,0.15);
+      border-radius: 4px;
+      text-align: center;
+      transition: all 0.3s;
+      background: rgba(46,27,62,0.5);
+    }
+    .beyond-card:hover {
+      border-color: rgba(196,168,224,0.4);
+      background: rgba(61,37,86,0.5);
+      transform: translateY(-5px);
+    }
+    .beyond-icon { font-size: 2rem; margin-bottom: 14px; display: block; }
+    .beyond-card h4 {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--lavender);
+      margin-bottom: 10px;
+    }
+    .beyond-card p {
+      font-size: 0.9rem;
+      color: #a898bc;
+      line-height: 1.65;
+    }
+
+    /* ── CONTACT ── */
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+    .contact-text p {
+      font-size: 1.15rem;
+      color: #c8b4d8;
+      line-height: 1.85;
+      margin-bottom: 32px;
+    }
+    .contact-links { display: flex; flex-direction: column; gap: 16px; }
+    .contact-link {
+      display: flex; align-items: center; gap: 16px;
+      text-decoration: none;
+      padding: 16px 20px;
+      border: 1px solid rgba(107,63,160,0.3);
+      border-radius: 3px;
+      background: rgba(61,37,86,0.25);
+      transition: all 0.25s;
+      color: var(--lavender);
+    }
+    .contact-link:hover {
+      border-color: var(--sage);
+      color: var(--mint);
+      background: rgba(45,92,70,0.15);
+      transform: translateX(6px);
+    }
+    .cl-icon {
+      font-size: 1rem; width: 20px;
+      color: var(--sage);
+    }
+    .cl-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      flex: 1;
+    }
+    .cl-value {
+      font-style: italic;
+      font-size: 0.95rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative; z-index: 2;
+      border-top: 1px solid rgba(107,63,160,0.2);
+      padding: 36px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-sig {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--violet);
+      font-size: 0.95rem;
+    }
+    .footer-copy {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: rgba(196,168,224,0.4);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 100%; max-width: 1100px;
+      margin: 0 auto;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(107,63,160,0.3), transparent);
+      position: relative; z-index: 2;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: none; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes scrollDrop {
+      0%   { opacity: 1; transform: scaleY(1) translateY(0); }
+      100% { opacity: 0; transform: scaleY(0.5) translateY(20px); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 18px 24px; }
+      .nav-links { display: none; }
+      .section { padding: 72px 24px; }
+      .hero { padding: 80px 24px 60px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card.featured { grid-template-columns: 1fr; gap: 20px; }
+      .beyond-grid { grid-template-columns: 1fr 1fr; }
+      .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+      footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a>welcome!</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <section>
-        <section id="showcase">
-            <div class="container">
-                <img src="resources/websiteProfilePic.svg" alt="Picture of Sriya Roy">
-                <h1>hi👋🏽 i'm sriya </h1>
-                <p>a machine learning engineer & researcher from London, UK. i'm fascinated by applications of AI that have direct impact on people today. i thrive in fast-paced, ambitious environments with people who are committed to the vision. <a href="https://sriyaroy.notion.site/Projects-551a473317e548abba0f312b3787c715?pvs=4">my projects.</a> </p>
-                <p><em>👇🏽👇🏽👇🏽 </em></p>
-            </div>
+  <!-- Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-            <div class="container">
-            </div>
-        </section>
-    </section>
+  <!-- Background flora -->
+  <div class="bg-flora">
+    <!-- Botanical leaf SVG #1 -->
+    <svg class="bf-1" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M150 380 C50 300 20 200 60 80 C100 -40 200 20 240 100 C280 180 260 320 150 380Z" stroke="#7aad8c" stroke-width="1" fill="rgba(122,173,140,0.3)"/>
+      <line x1="150" y1="380" x2="150" y2="80" stroke="#7aad8c" stroke-width="0.8" opacity="0.6"/>
+      <line x1="150" y1="300" x2="220" y2="240" stroke="#7aad8c" stroke-width="0.6" opacity="0.5"/>
+      <line x1="150" y1="240" x2="90" y2="190" stroke="#7aad8c" stroke-width="0.6" opacity="0.5"/>
+      <line x1="150" y1="180" x2="210" y2="140" stroke="#7aad8c" stroke-width="0.5" opacity="0.4"/>
+      <line x1="150" y1="130" x2="105" y2="100" stroke="#7aad8c" stroke-width="0.5" opacity="0.4"/>
+    </svg>
+    <!-- Botanical leaf SVG #2 -->
+    <svg class="bf-2" viewBox="0 0 280 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M140 360 C60 280 10 160 50 60 C90 -40 200 10 230 110 C260 200 230 300 140 360Z" stroke="#c4a8e0" stroke-width="1" fill="rgba(196,168,224,0.2)"/>
+      <line x1="140" y1="360" x2="140" y2="60" stroke="#c4a8e0" stroke-width="0.8" opacity="0.5"/>
+      <line x1="140" y1="280" x2="200" y2="230" stroke="#c4a8e0" stroke-width="0.5" opacity="0.4"/>
+      <line x1="140" y1="220" x2="85" y2="175" stroke="#c4a8e0" stroke-width="0.5" opacity="0.4"/>
+    </svg>
+    <svg class="bf-3" viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M100 280 C30 210 10 120 40 40 C70 -30 160 10 180 80 C200 150 170 230 100 280Z" stroke="#7aad8c" stroke-width="0.8" fill="rgba(122,173,140,0.2)"/>
+    </svg>
+  </div>
 
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">sriya roy</div>
+    <ul class="nav-links">
+      <li><a href="#about">about</a></li>
+      <li><a href="#experience">experience</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </nav>
 
-    <section id="about" class="section">
-        <div class="container section-content">
-            <div>
-                <h2><u>about me</u></h2>
-                <p>i'm currently a Machine Learning Research Engineer @ Jaguar Land Rover (JLR), specialising in Computer Vision in Research & Development. for the last year, I've also been Scrum Master which involves managing an R&D squad of 7 ML Engineers with varying experience. i've worked in AI since Oct. 2021 and before that, i was a System Architect for Off Road Driving @ JLR. i hold a BSc Second Upper Class Honours in Digital Technology Solutions from University of Warwick.</p>
-                <section></section>
-                <p>Here are some technologies I work with: </p>
-                <ul class="tech-list">
-                    <li>♦ Python &#40;PyTorch & TensorFlow&#41;</li>
-                    <li>♦ Google Cloud Platform &#40;GCP&#41;</li>
-                    <li>♦ Amazon Web Services &#40;AWS&#41;</li>
-                    <li>♦ HuggingFace &#40;Transformers&#41;</li>
-                    <li>♦ C++</li>
-                    <li>♦ MATLAB + Simulink</li>
-                </ul>
-            </div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Technical Program Manager · ML Research Engineer · London</p>
+      <h1 class="hero-name">hi, i'm <em>sriya</em></h1>
+      <p class="hero-tagline">
+        I build intelligent systems that actually ship —<br/>
+        <span>from prototype to production</span>, with craft at every step.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#projects">see my work</a>
+        <a class="btn btn-outline" href="#contact">let's talk</a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="reveal">
+      <p class="section-label">01 — about me</p>
+      <h2 class="section-title">engineer, <em>researcher</em>,<br/>relentless builder</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal" style="transition-delay:0.15s">
+        <p>I'm an AI Delivery Lead and ML Research Engineer with 7+ years delivering real-world AI systems in safety-critical environments. Most recently at <strong>Jaguar Land Rover</strong>, where I led teams, shipped production perception systems, and owned the full arc from discovery through deployment.</p>
+        <p>I'm now stepping into the intersection of <strong>AI strategy and cross-functional product delivery</strong> — bringing both the technical depth and the stakeholder instincts to move fast without breaking things.</p>
+        <p>I'm Indian Bengali, grew up between worlds, and I think that's made me comfortable with ambiguity — in data and in life. I believe the best AI is built by people who are genuinely curious about the humans it affects.</p>
+      </div>
+      <div class="about-aside reveal" style="transition-delay:0.3s">
+        <div class="aside-card">
+          <h4>Education</h4>
+          <p>BSc Digital & Technology Solutions — <em>Data Analytics</em><br/>University of Warwick · 2:1 · Distinction</p>
         </div>
-    </section>
-        
+        <div class="aside-card">
+          <h4>Certifications</h4>
+          <ul>
+            <li>Google Cloud Professional Data Engineer</li>
+            <li>Certified Scrum Master</li>
+            <li>2 Granted Patents — Autonomous Perception</li>
+          </ul>
+        </div>
+        <div class="aside-card">
+          <h4>Currently</h4>
+          <p>Transitioning into a <strong style="color:var(--mint)">Technical Program Manager</strong> role focused on AI strategy — excited to be closer to the frontier.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <footer>
-        <nav>
-            <ul>
-                <li><a>Email: sriyaroy@yahoo.com</a></li>
-                <li><a href="https://github.com/sriyaroy">GitHub</a></li>
-                <li><a href="https://www.linkedin.com/in/sriya-roy/">LinkedIn</a></li>
-            </ul>
-        </nav>
-        <p>Sriya Roy &copy; 2024</p>
-    </footer>
+  <div class="divider"></div>
 
-    <script>
-        document.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('.section');
-            const scrollPosition = window.scrollY + window.innerHeight;
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="reveal">
+      <p class="section-label">02 — experience</p>
+      <h2 class="section-title">where i've <em>built things</em></h2>
+    </div>
+    <div class="timeline reveal" style="transition-delay:0.2s">
+      <div class="timeline-item">
+        <p class="tl-meta">Sep 2019 – April 2026 · Jaguar Land Rover</p>
+        <p class="tl-role">ML Research Engineer </p>
+        <p class="tl-company">Computer Vision · Autonomous Perception · R&D</p>
+        <ul class="tl-bullets">
+          <li>Led end-to-end delivery of JLR's first AI off-road perception system, improving accuracy by 60%</li>
+          <li>Designed AWS data pipelines (S3, Lambda, DynamoDB) that cut data prep time by 70%</li>
+          <li>Owned rapid AI pilots to validate feasibility — directly informing go/no-go and next-phase investment</li>
+          <li>Produced executive demos, risk summaries, and delivery roadmaps for senior leadership</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <p class="tl-meta">Apr 2023 – Mar 2025 · Jaguar Land Rover</p>
+        <p class="tl-role">Scrum Master — AI Strategy & Delivery</p>
+        <p class="tl-company">Team of 7 Engineers · JIRA · Confluence</p>
+        <ul class="tl-bullets">
+          <li>Owned backlog, sprint planning, and delivery cadence across a high-performing ML team</li>
+          <li>Facilitated stakeholder workshops to align on scope, success metrics, and roadmaps</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <p class="tl-meta">Sep 2019 – Aug 2022 · Jaguar Land Rover</p>
+        <p class="tl-role">Systems Engineer — Embedded Software</p>
+        <p class="tl-company">Safety-Critical Systems · MATLAB · C</p>
+        <ul class="tl-bullets">
+          <li>Developed and validated safety-critical vehicle subsystems across the off-road driving domain</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <p class="tl-meta">Mar 2021 – Mar 2023 · Warwick AI Society</p>
+        <p class="tl-role">VP & Head of Marketing</p>
+        <p class="tl-company">Community · OpenAI · Google DeepMind partnerships</p>
+        <ul class="tl-bullets">
+          <li>Scaled society from 200 to 1,000+ members; organised applied AI talks with OpenAI and DeepMind</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-            sections.forEach(section => {
-                if (section.offsetTop < scrollPosition) {
-                    section.classList.add('show');
-                }
-            });
-        });
-    </script>
+  <div class="divider"></div>
+
+  <!-- SKILLS -->
+  <section class="section">
+    <div class="reveal">
+      <p class="section-label">03 — skills</p>
+      <h2 class="section-title">the <em>toolkit</em></h2>
+    </div>
+    <div class="skills-grid reveal" style="transition-delay:0.15s">
+      <div class="skill-card">
+        <span class="skill-icon">⬡</span>
+        <h4>AI & ML</h4>
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">PyTorch</span>
+          <span class="tag">TensorFlow</span>
+          <span class="tag">HuggingFace</span>
+          <span class="tag">Computer Vision</span>
+          <span class="tag">ML Systems</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">☁</span>
+        <h4>Cloud & Data</h4>
+        <div class="skill-tags">
+          <span class="tag">AWS</span>
+          <span class="tag">GCP</span>
+          <span class="tag">S3 / Lambda</span>
+          <span class="tag">DynamoDB</span>
+          <span class="tag">SQL / NoSQL</span>
+          <span class="tag">dbt</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">◈</span>
+        <h4>Delivery & Leadership</h4>
+        <div class="skill-tags">
+          <span class="tag">Scrum / Agile</span>
+          <span class="tag">JIRA</span>
+          <span class="tag">Stakeholder Mgmt</span>
+          <span class="tag">Roadmapping</span>
+          <span class="tag">Exec Comms</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">⟡</span>
+        <h4>Engineering</h4>
+        <div class="skill-tags">
+          <span class="tag">TypeScript</span>
+          <span class="tag">C / C++</span>
+          <span class="tag">MATLAB</span>
+          <span class="tag">Next.js</span>
+          <span class="tag">Embedded Systems</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">✦</span>
+        <h4>Strategy & Ops</h4>
+        <div class="skill-tags">
+          <span class="tag">AI Initiative Ownership</span>
+          <span class="tag">Rapid Prototyping</span>
+          <span class="tag">Prioritisation</span>
+          <span class="tag">Go / No-Go Decisions</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">◬</span>
+        <h4>Building Things</h4>
+        <div class="skill-tags">
+          <span class="tag">Side Businesses</span>
+          <span class="tag">Freelance Web Dev</span>
+          <span class="tag">Data Products</span>
+          <span class="tag">Hackathons</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="reveal">
+      <p class="section-label">04 — selected work</p>
+      <h2 class="section-title">things i've <em>made</em></h2>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card featured reveal" style="transition-delay:0.1s">
+        <div>
+          <p class="project-num">01 · featured</p>
+          <h3 class="project-title">Anthropic × EF Hackathon — 2nd Place</h3>
+          <p class="project-desc">Built a production-style AI assistant in PyTorch from scratch over a single weekend, placing 2nd across a field of engineers and researchers. Rapid prototyping, clean architecture, demo-ready in 48 hours.</p>
+          <div class="project-tech">
+            <span class="p-badge">PyTorch</span>
+            <span class="p-badge">Python</span>
+            <span class="p-badge">Anthropic API</span>
+            <span class="p-badge">Production AI</span>
+          </div>
+        </div>
+        <div style="font-size:4rem; opacity:0.25; text-align:center">✦</div>
+      </div>
+
+      <div class="project-card reveal" style="transition-delay:0.2s">
+        <p class="project-num">02</p>
+        <h3 class="project-title">JLR Off-Road Perception System</h3>
+        <p class="project-desc">Led delivery of JLR's first AI off-road perception platform, taking it from research prototype to production deployment. 60% improvement in accuracy, cross-functional team of 7 engineers.</p>
+        <div class="project-tech">
+          <span class="p-badge">Computer Vision</span>
+          <span class="p-badge">AWS</span>
+          <span class="p-badge">PyTorch</span>
+          <span class="p-badge">ADAS</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal" style="transition-delay:0.3s">
+        <p class="project-num">03</p>
+        <h3 class="project-title">NBA Analytics Platform</h3>
+        <p class="project-desc">Co-building a statistics platform surfacing unique pre-computed basketball analytics. Low-cost ELT architecture using Supabase, dbt Core, and Next.js — designed to out-UX Basketball Reference.</p>
+        <div class="project-tech">
+          <span class="p-badge">Next.js</span>
+          <span class="p-badge">Supabase</span>
+          <span class="p-badge">dbt</span>
+          <span class="p-badge">nba_api</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal" style="transition-delay:0.4s">
+        <p class="project-num">04</p>
+        <h3 class="project-title">Client Website — Freelance</h3>
+        <p class="project-desc">Built a full production consulting website for a client's business using TypeScript and Vite. Zero cost to deliver, professional outcome — proof that engineering skills transfer directly into commercial value.</p>
+        <div class="project-tech">
+          <span class="p-badge">TypeScript</span>
+          <span class="p-badge">Vite</span>
+          <span class="p-badge">Freelance</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal" style="transition-delay:0.5s">
+        <p class="project-num">05</p>
+        <h3 class="project-title">2 Autonomous Perception Patents</h3>
+        <p class="project-desc">Named inventor on two granted patents in autonomous perception and environment modelling, developed through R&D work at JLR. Filed and granted 2024.</p>
+        <div class="project-tech">
+          <span class="p-badge">IP</span>
+          <span class="p-badge">Autonomous Systems</span>
+          <span class="p-badge">R&D</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- BEYOND WORK -->
+  <section class="section">
+    <div class="reveal">
+      <p class="section-label">05 — beyond work</p>
+      <h2 class="section-title">a few other <em>obsessions</em></h2>
+    </div>
+    <div class="beyond-grid reveal" style="transition-delay:0.15s">
+      <div class="beyond-card">
+        <span class="beyond-icon">🪨</span>
+        <h4>Sculpture</h4>
+        <p>Polymer clay, chiaroscuro, deconstruction. I make things with my hands to stay sane between keyboards.</p>
+      </div>
+      <div class="beyond-card">
+        <span class="beyond-icon">✍🏽</span>
+        <h4>Journaling</h4>
+        <p>Structured thinking is a craft. I use frameworks, mind maps, and daily writing to process and plan.</p>
+      </div>
+      <div class="beyond-card">
+        <span class="beyond-icon">⚡</span>
+        <h4>Building</h4>
+        <p>Side hustles, businesses, tools. Storage concepts, analytics platforms — the itch to build never turns off.</p>
+      </div>
+      <div class="beyond-card">
+        <span class="beyond-icon">🌿</span>
+        <h4>Design</h4>
+        <p>Not just how things look — how they feel. I care about the UX of everything from products to conversations.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="reveal">
+      <p class="section-label">06 — get in touch</p>
+      <h2 class="section-title">let's <em>connect</em></h2>
+    </div>
+    <div class="contact-inner">
+      <div class="contact-text reveal" style="transition-delay:0.15s">
+        <p>Whether you're building something ambitious in AI, looking for someone who can bridge deep technical work and strategic delivery, or just want to talk — I'm always up for a good conversation.</p>
+        <a class="btn btn-primary" href="mailto:sriyaroy@yahoo.com">say hello →</a>
+      </div>
+      <div class="contact-links reveal" style="transition-delay:0.3s">
+        <a class="contact-link" href="mailto:sriyaroy@yahoo.com">
+          <span class="cl-icon">✉</span>
+          <span class="cl-label">Email</span>
+          <span class="cl-value">sriyaroy@yahoo.com</span>
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/sriya-roy/" target="_blank">
+          <span class="cl-icon">in</span>
+          <span class="cl-label">LinkedIn</span>
+          <span class="cl-value">/in/sriya-roy</span>
+        </a>
+        <a class="contact-link" href="https://github.com/sriyaroy" target="_blank">
+          <span class="cl-icon">⌥</span>
+          <span class="cl-label">GitHub</span>
+          <span class="cl-value">sriyaroy</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-sig">sriya roy — made with intention</span>
+    <span class="footer-copy">© <script>document.write(new Date().getFullYear())</script></span>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const dot  = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    function animateCursor() {
+      rx += (mx - rx) * 0.13;
+      ry += (my - ry) * 0.13;
+      dot.style.left  = mx + 'px';
+      dot.style.top   = my + 'px';
+      ring.style.left = rx + 'px';
+      ring.style.top  = ry + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+    document.querySelectorAll('a, button, .skill-card, .project-card, .beyond-card, .aside-card').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('hover'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
